@@ -10,28 +10,33 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Noto Sans KR', sans-serif; background: #0c0c0f; color: #fff; min-height: 100vh; }
     .wrap { max-width: 420px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; padding: 20px 20px 0; background: #111115; position: relative; overflow: hidden; }
-    .glow1 { position: absolute; top: 0; right: 0; width: 240px; height: 240px; background: radial-gradient(circle, rgba(217,119,6,0.08) 0%, transparent 70%); pointer-events: none; }
-    .glow2 { position: absolute; bottom: 120px; left: 0; width: 180px; height: 180px; background: radial-gradient(circle, rgba(234,179,8,0.05) 0%, transparent 70%); pointer-events: none; }
-    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; position: relative; z-index: 10; }
+    .glow1 { position: absolute; top: 0; right: 0; width: 260px; height: 260px; background: radial-gradient(circle, rgba(217,119,6,0.1) 0%, transparent 70%); pointer-events: none; }
+    .glow2 { position: absolute; bottom: 120px; left: 0; width: 200px; height: 200px; background: radial-gradient(circle, rgba(234,179,8,0.06) 0%, transparent 70%); pointer-events: none; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; position: relative; z-index: 10; }
     .logo { display: flex; align-items: center; gap: 8px; background: none; border: none; color: #fff; cursor: pointer; }
     .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #fde047, #d97706); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(217,119,6,0.3); }
     .logo-icon span { font-size: 9px; font-weight: 900; color: #000; line-height: 1.2; text-align: center; }
     .logo-text { font-size: 17px; font-weight: 900; font-style: italic; }
     .logo-badge { font-size: 9px; font-style: normal; color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); padding: 1px 5px; border-radius: 4px; margin-left: 3px; }
     .reset-btn { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 18px; padding: 8px; cursor: pointer; }
-    /* 홈 */
     .home { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; animation: fadeUp 0.5s ease; }
-    .icon-wrap { position: relative; margin-bottom: 32px; }
-    .icon-box { width: 110px; height: 110px; border-radius: 28px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; font-size: 40px; }
-    .price-badge { position: absolute; top: -10px; right: -10px; background: linear-gradient(135deg,#fbbf24,#f59e0b); color: #000; font-size: 8px; font-weight: 900; padding: 4px 8px; border-radius: 8px; transform: rotate(6deg); }
-    h1 { font-size: 1.9rem; font-weight: 900; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.5px; }
+    .icon-wrap { position: relative; margin-bottom: 24px; }
+    .trad-icon { width: 120px; height: 120px; }
+    .trad-icon svg { width: 100%; height: 100%; }
+    .price-box { background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(251,191,36,0.06)); border: 1px solid rgba(245,158,11,0.3); border-radius: 20px; padding: 16px 36px; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; margin-bottom: 22px; width: 100%; }
+    .price-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(245,158,11,0.6), transparent); }
+    .price-tag { position: absolute; top: 0; right: 16px; background: linear-gradient(135deg,#f59e0b,#d97706); color: #000; font-size: 8px; font-weight: 900; padding: 3px 10px; border-radius: 0 0 10px 10px; letter-spacing: 0.1em; }
+    .price-main { font-size: 3.6rem; font-weight: 900; background: linear-gradient(90deg, #fde68a, #f59e0b, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; letter-spacing: -3px; }
+    .price-won-label { display: flex; align-items: baseline; gap: 4px; }
+    .price-won { font-size: 1.6rem; font-weight: 900; color: #fbbf24; margin-top: 0; }
+    .price-desc { font-size: 10px; color: rgba(255,255,255,0.35); font-weight: 700; margin-top: 4px; letter-spacing: 0.08em; }
+    h1 { font-size: 1.75rem; font-weight: 900; line-height: 1.25; margin-bottom: 10px; letter-spacing: -0.5px; }
     .gradient-text { background: linear-gradient(90deg,#fde68a,#f59e0b,#fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-style: italic; }
-    .subtitle { color: rgba(255,255,255,0.35); font-size: 14px; line-height: 1.7; margin-bottom: 36px; }
-    .error-box { width: 100%; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); border-radius: 14px; padding: 12px 16px; margin-bottom: 20px; color: #f87171; font-size: 12px; text-align: left; display: flex; gap: 8px; }
-    .btn-camera { width: 100%; background: linear-gradient(135deg,#f59e0b,#fbbf24); color: #000; font-weight: 900; font-size: 16px; padding: 18px 0; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 8px 24px rgba(217,119,6,0.25); margin-bottom: 12px; cursor: pointer; border: none; font-family: 'Noto Sans KR', sans-serif; }
+    .subtitle { color: rgba(255,255,255,0.35); font-size: 13px; line-height: 1.7; margin-bottom: 22px; }
+    .error-box { width: 100%; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); border-radius: 14px; padding: 12px 16px; margin-bottom: 16px; color: #f87171; font-size: 12px; text-align: left; display: flex; gap: 8px; }
+    .btn-camera { width: 100%; background: linear-gradient(135deg,#f59e0b,#fbbf24); color: #000; font-weight: 900; font-size: 16px; padding: 18px 0; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 8px 28px rgba(217,119,6,0.3); margin-bottom: 12px; cursor: pointer; border: none; font-family: 'Noto Sans KR', sans-serif; }
     .btn-gallery { width: 100%; background: rgba(255,255,255,0.06); color: #fff; font-weight: 900; font-size: 16px; padding: 18px 0; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; font-family: 'Noto Sans KR', sans-serif; }
-    .powered { margin-top: 20px; font-size: 9px; color: rgba(255,255,255,0.15); font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; }
-    /* 분석중 */
+    .powered { margin-top: 16px; font-size: 9px; color: rgba(255,255,255,0.15); font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; }
     .analyzing { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
     .preview-wrap { position: relative; }
     .preview-img { width: 140px; height: 140px; border-radius: 24px; overflow: hidden; border: 2px solid rgba(245,158,11,0.3); }
@@ -40,7 +45,6 @@
     .spinner { width: 44px; height: 44px; border: 3px solid rgba(245,158,11,0.2); border-top-color: #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; }
     .loading-text { color: #f59e0b; font-weight: 900; font-size: 15px; animation: pulse 2s ease-in-out infinite; }
     .loading-sub { color: rgba(255,255,255,0.2); font-size: 11px; }
-    /* 결과 */
     .result { flex: 1; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; padding-bottom: 16px; animation: fadeUp 0.5s ease; }
     .thumb { width: 72px; height: 72px; border-radius: 16px; overflow: hidden; border: 2px solid rgba(245,158,11,0.3); margin: 8px auto 0; }
     .thumb img { width: 100%; height: 100%; object-fit: cover; }
@@ -52,17 +56,18 @@
     .score-bar-bg { height: 6px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
     .score-bar-fill { height: 100%; background: linear-gradient(90deg,#f59e0b,#fbbf24); border-radius: 999px; transition: width 1s ease; }
     .summary-box { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 18px 20px; border: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); font-style: italic; line-height: 1.7; font-size: 14px; text-align: center; }
-    .lock-box { background: #18181f; border-radius: 24px; padding: 28px 24px; border: 1px solid rgba(245,158,11,0.2); text-align: center; }
-    .lock-icon { font-size: 28px; margin-bottom: 12px; }
-    .lock-title { font-weight: 900; font-size: 15px; margin-bottom: 6px; }
-    .lock-desc { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 20px; line-height: 1.6; }
-    .btn-pay { width: 100%; background: #fff; color: #000; font-weight: 900; font-size: 15px; padding: 16px 0; border-radius: 14px; border: none; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; }
-    /* 프리미엄 */
+    .lock-box { background: #18181f; border-radius: 24px; padding: 24px; border: 1px solid rgba(245,158,11,0.2); text-align: center; }
+    .lock-icon { font-size: 28px; margin-bottom: 10px; }
+    .lock-title { font-weight: 900; font-size: 15px; margin-bottom: 4px; }
+    .lock-desc { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 4px; line-height: 1.6; }
+    .btn-pay { width: 100%; background: #fff; color: #000; font-weight: 900; font-size: 15px; padding: 18px 0; border-radius: 14px; border: none; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; margin-top: 16px; }
+    .btn-pay-price { font-size: 22px; font-weight: 900; color: #d97706; }
+    .pay-error { width: 100%; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); border-radius: 14px; padding: 12px 16px; margin-top: 10px; color: #f87171; font-size: 12px; text-align: left; display: flex; gap: 8px; }
     .premium { flex: 1; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; padding-bottom: 40px; animation: fadeUp 0.5s ease; }
     .premium-header { text-align: center; padding-top: 8px; }
     .premium-title { font-size: 19px; font-weight: 900; font-style: italic; text-transform: uppercase; }
     .premium-sub { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 4px; letter-spacing: 0.2em; }
-    .detail-card { background: rgba(255,255,255,0.04); padding: 14px 16px; border-radius: 16px; border-left: 3px solid #f59e0b; }
+    .detail-card { background: rgba(255,255,255,0.04); padding: 14px 16px; border-radius: 16px; border-left: 3px solid #f59e0b; margin-bottom: 10px; }
     .detail-label { color: #f59e0b; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 5px; }
     .detail-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
     .golden-box { background: linear-gradient(135deg,#f59e0b,#ca8a04); border-radius: 28px; padding: 28px 24px; color: #000; position: relative; overflow: hidden; }
@@ -79,9 +84,11 @@
     footer { margin-top: auto; padding: 16px 0 12px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
     footer p { font-size: 8px; color: rgba(255,255,255,0.15); font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+    @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.5)} }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    .float { animation: float 3.5s ease-in-out infinite; }
     .hidden { display: none !important; }
   </style>
 </head>
@@ -89,7 +96,6 @@
 <div class="wrap">
   <div class="glow1"></div>
   <div class="glow2"></div>
-
   <header>
     <button class="logo" onclick="resetApp()">
       <div class="logo-icon"><span>99<br/>관상</span></div>
@@ -97,15 +103,55 @@
     </button>
     <button class="reset-btn" onclick="resetApp()">↺</button>
   </header>
-
-  <!-- 홈 -->
   <div id="home" class="home">
     <div class="icon-wrap">
-      <div class="icon-box">👁️</div>
-      <div class="price-badge">990원</div>
+      <div class="trad-icon float">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="faceGrad" cx="50%" cy="45%" r="50%">
+              <stop offset="0%" stop-color="#fde68a"/>
+              <stop offset="100%" stop-color="#d97706"/>
+            </radialGradient>
+            <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(245,158,11,0.15)"/>
+              <stop offset="100%" stop-color="rgba(245,158,11,0.02)"/>
+            </radialGradient>
+          </defs>
+          <circle cx="60" cy="60" r="56" fill="url(#bgGrad)" stroke="rgba(245,158,11,0.2)" stroke-width="1"/>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(245,158,11,0.07)" stroke-width="0.5" stroke-dasharray="4 3"/>
+          <text x="60" y="16" text-anchor="middle" font-size="8" fill="rgba(245,158,11,0.5)" font-weight="bold" font-family="serif">福</text>
+          <path d="M46 32 Q60 24 74 32 L72 38 Q60 32 48 38 Z" fill="rgba(245,158,11,0.35)" stroke="rgba(245,158,11,0.4)" stroke-width="0.5"/>
+          <circle cx="60" cy="26" r="2.5" fill="#fbbf24" opacity="0.9"/>
+          <ellipse cx="34" cy="60" rx="4" ry="7" fill="#e9a040" opacity="0.65"/>
+          <ellipse cx="86" cy="60" rx="4" ry="7" fill="#e9a040" opacity="0.65"/>
+          <ellipse cx="60" cy="60" rx="27" ry="33" fill="url(#faceGrad)" opacity="0.92"/>
+          <path d="M44 44 Q60 37 76 44" fill="none" stroke="rgba(120,60,0,0.25)" stroke-width="0.8"/>
+          <path d="M46 52 Q52 48 58 52" fill="none" stroke="#92400e" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M62 52 Q68 48 74 52" fill="none" stroke="#92400e" stroke-width="1.8" stroke-linecap="round"/>
+          <ellipse cx="52" cy="58" rx="6.5" ry="4" fill="#7c3409"/>
+          <ellipse cx="52" cy="58" rx="3.5" ry="3" fill="#1a0800"/>
+          <circle cx="53.5" cy="56.5" r="1" fill="rgba(255,255,255,0.65)"/>
+          <ellipse cx="68" cy="58" rx="6.5" ry="4" fill="#7c3409"/>
+          <ellipse cx="68" cy="58" rx="3.5" ry="3" fill="#1a0800"/>
+          <circle cx="69.5" cy="56.5" r="1" fill="rgba(255,255,255,0.65)"/>
+          <path d="M57 62 L55 69 Q60 71.5 65 69 L63 62" fill="rgba(180,100,20,0.2)" stroke="rgba(120,60,0,0.25)" stroke-width="0.5"/>
+          <path d="M52 75 Q60 80 68 75" fill="none" stroke="#92400e" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M54 75 Q60 77 66 75" fill="rgba(180,80,20,0.25)"/>
+          <circle cx="60" cy="44" r="1.5" fill="#fbbf24" opacity="0.7"/>
+          <circle cx="60" cy="88" r="1.5" fill="#fbbf24" opacity="0.7"/>
+        </svg>
+      </div>
     </div>
     <h1>내 얼굴에 숨겨진<br/><span class="gradient-text">100억짜리 부자 기운</span></h1>
-    <p class="subtitle">AI가 이목구비를 정밀 스캔하여<br/>숨겨진 재물운 등급을 산출합니다</p>
+    <p class="subtitle">AI 관상학으로 이목구비를 정밀 분석하여<br/>숨겨진 재물운 등급을 산출합니다</p>
+    <div class="price-box">
+      <div class="price-tag">단돈</div>
+      <div class="price-won-label">
+        <div class="price-main">990</div>
+        <div class="price-won">원</div>
+      </div>
+      <div class="price-desc">프리미엄 관상 리포트 전체 열람</div>
+    </div>
     <div id="error-box" class="error-box hidden"><span>⚠️</span><span id="error-msg"></span></div>
     <label class="btn-camera">
       📷 카메라로 바로 찍기
@@ -117,8 +163,6 @@
     </label>
     <p class="powered">Powered by Gemini AI · YUNO LABS</p>
   </div>
-
-  <!-- 분석중 -->
   <div id="analyzing" class="analyzing hidden">
     <div class="preview-wrap">
       <div class="preview-img"><img id="preview-img" src="" alt=""/></div>
@@ -130,8 +174,6 @@
       <p class="loading-sub">잠시만 기다려 주세요</p>
     </div>
   </div>
-
-  <!-- 결과 -->
   <div id="result" class="result hidden">
     <div class="thumb"><img id="thumb-img" src="" alt=""/></div>
     <div style="text-align:center">
@@ -144,21 +186,21 @@
       <div class="score-bar-bg"><div class="score-bar-fill" id="score-fill" style="width:0%"></div></div>
     </div>
     <div class="summary-box">"<span id="r-summary"></span>"</div>
-    <div id="pay-error" class="error-box hidden"><span>⚠️</span><span id="pay-error-msg"></span></div>
     <div class="lock-box">
       <div class="lock-icon">🔒</div>
       <div class="lock-title">프리미엄 리포트 잠금 해제</div>
-      <div class="lock-desc">부위별 정밀 분석 · 인생 황금기 · 개운법</div>
-      <button class="btn-pay" onclick="handlePayment()">💳 990원에 전체 리포트 보기</button>
+      <div class="lock-desc">부위별 정밀 분석 · 인생 황금기 · 개운법 3가지</div>
+      <button class="btn-pay" onclick="handlePayment()">
+        💳 전체 리포트 열람 &nbsp;<span class="btn-pay-price">990원</span>
+      </button>
+      <div id="pay-error" class="pay-error hidden"><span>⚠️</span><span id="pay-error-msg"></span></div>
     </div>
   </div>
-
-  <!-- 프리미엄 -->
   <div id="premium" class="premium hidden">
     <div class="premium-header">
       <div style="font-size:32px;margin-bottom:8px">✅</div>
       <div class="premium-title">Premium Report</div>
-      <div class="premium-sub">99 GUANSANG AI · 정밀 분석</div>
+      <div class="premium-sub">99 GUANSANG AI · 정밀 분석 완료</div>
     </div>
     <div id="details-wrap"></div>
     <div class="golden-box">
@@ -176,145 +218,82 @@
     <button class="btn-share" onclick="handleShare()">📤 결과 공유하기</button>
     <button class="btn-reset" onclick="resetApp()">다시 분석하기</button>
   </div>
-
-  <footer><p>YUNO LABS · 99 GUANSANG AI</p></footer>
+  <footer><p>YUNO LABS · 99 GUANSANG AI · 구구관상</p></footer>
 </div>
-
 <script>
   const GEMINI_API_KEY = "AIzaSyCd55g5GYEAycVewVGm9x7bZnIYVgRne54";
-  const MODEL = "gemini-2.5-flash-preview-05-20";
-  let analysisData = null;
-  let currentImageUrl = null;
-
-  const loadingMsgs = ["안면 골격 스캔 중...", "재물 기운 수치 계산 중...", "이목구비 정밀 분석 중...", "관상 등급 산출 중..."];
-  const detailLabels = { nose: "코 · 재물궁", eyes: "눈 · 통찰력", forehead: "이마 · 사회운", chin: "턱·입 · 저장운" };
-
+  const MODEL = "gemini-1.5-flash";
+  let analysisData = null, currentImageUrl = null;
+  const loadingMsgs = ["안면 골격 스캔 중...","재물 기운 수치 계산 중...","이목구비 정밀 분석 중...","관상 등급 산출 중..."];
+  const detailLabels = { nose:"코 · 재물궁", eyes:"눈 · 통찰력", forehead:"이마 · 사회운", chin:"턱·입 · 저장운" };
   function showStep(id) {
-    ["home","analyzing","result","premium"].forEach(s => document.getElementById(s).classList.add("hidden"));
+    ["home","analyzing","result","premium"].forEach(s=>document.getElementById(s).classList.add("hidden"));
     document.getElementById(id).classList.remove("hidden");
   }
-
-  function showError(msg) {
-    document.getElementById("error-msg").textContent = msg;
-    document.getElementById("error-box").classList.remove("hidden");
-  }
-
-  function resetApp() {
-    analysisData = null;
-    currentImageUrl = null;
-    document.getElementById("error-box").classList.add("hidden");
-    showStep("home");
-  }
-
+  function showError(msg) { document.getElementById("error-msg").textContent=msg; document.getElementById("error-box").classList.remove("hidden"); }
+  function resetApp() { analysisData=null; currentImageUrl=null; document.getElementById("error-box").classList.add("hidden"); showStep("home"); }
   function handleUpload(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    if (file.size > 10 * 1024 * 1024) { showError("10MB 이하 사진을 선택해 주세요."); return; }
-    currentImageUrl = URL.createObjectURL(file);
-    document.getElementById("preview-img").src = currentImageUrl;
-    document.getElementById("thumb-img").src = currentImageUrl;
-    e.target.value = "";
-    runAnalysis(file);
+    const file=e.target.files[0]; if(!file) return;
+    if(file.size>10*1024*1024){showError("10MB 이하 사진을 선택해 주세요.");return;}
+    currentImageUrl=URL.createObjectURL(file);
+    document.getElementById("preview-img").src=currentImageUrl;
+    document.getElementById("thumb-img").src=currentImageUrl;
+    e.target.value=""; runAnalysis(file);
   }
-
   async function runAnalysis(file) {
-    showStep("analyzing");
-    let i = 0;
-    document.getElementById("loading-text").textContent = loadingMsgs[0];
-    const timer = setInterval(() => { i = (i+1) % loadingMsgs.length; document.getElementById("loading-text").textContent = loadingMsgs[i]; }, 1800);
-
+    showStep("analyzing"); let i=0;
+    document.getElementById("loading-text").textContent=loadingMsgs[0];
+    const timer=setInterval(()=>{i=(i+1)%loadingMsgs.length;document.getElementById("loading-text").textContent=loadingMsgs[i];},1800);
     try {
-      const base64 = await new Promise((res, rej) => {
-        const r = new FileReader();
-        r.onloadend = () => res(r.result.split(",")[1]);
-        r.onerror = rej;
-        r.readAsDataURL(file);
-      });
-      const mimeType = file.type || "image/jpeg";
-      const data = await analyzeWithGemini(base64, mimeType);
-      clearInterval(timer);
-      analysisData = data;
-      renderResult(data);
-      showStep("result");
-    } catch(err) {
-      clearInterval(timer);
-      showError(err.message || "분석 중 오류가 발생했습니다.");
-      showStep("home");
-    }
+      const base64=await new Promise((res,rej)=>{const r=new FileReader();r.onloadend=()=>res(r.result.split(",")[1]);r.onerror=rej;r.readAsDataURL(file);});
+      const data=await analyzeWithGemini(base64,file.type||"image/jpeg");
+      clearInterval(timer); analysisData=data; renderResult(data); showStep("result");
+    } catch(err) { clearInterval(timer); showError(err.message||"분석 중 오류가 발생했습니다."); showStep("home"); }
   }
-
-  async function analyzeWithGemini(base64, mimeType) {
-    const prompt = `당신은 20년 경력의 관상 전문가입니다. 사진을 분석하여 재물운 위주의 관상을 봐주세요.
-마크다운 없이 순수 JSON만 반환하세요:
-{"grade":"S/A/B/C 중 하나","score":숫자,"title":"관상 별명","summary":"요약 2~3문장","details":{"nose":"코 분석","eyes":"눈 분석","forehead":"이마 분석","chin":"턱 분석"},"goldenAge":"황금기 시기","remedy":["개운법1","개운법2","개운법3"]}`;
-
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GEMINI_API_KEY}`;
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }, { inlineData: { mimeType, data: base64 } }] }], generationConfig: { temperature: 0.7, maxOutputTokens: 1024 } })
-    });
-
-    if (!res.ok) { const e = await res.json().catch(()=>{}); throw new Error(e?.error?.message || `오류 (${res.status})`); }
-    const d = await res.json();
-    const raw = d?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
-    if (!raw) throw new Error("AI 응답이 비어있습니다.");
-    const cleaned = raw.replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/i,"").trim();
-    try { return JSON.parse(cleaned); } catch {
-      const m = raw.match(/\{[\s\S]*\}/);
-      if (!m) throw new Error("응답 파싱 실패. 다시 시도해 주세요.");
-      return JSON.parse(m[0]);
-    }
+  async function analyzeWithGemini(base64,mimeType) {
+    const prompt=`당신은 20년 경력의 관상 전문가입니다. 사진을 분석하여 재물운 위주의 관상을 봐주세요.\n마크다운 없이 순수 JSON만 반환하세요:\n{"grade":"S/A/B/C 중 하나","score":숫자,"title":"관상 별명","summary":"요약 2~3문장","details":{"nose":"코 분석","eyes":"눈 분석","forehead":"이마 분석","chin":"턱 분석"},"goldenAge":"황금기 시기","remedy":["개운법1","개운법2","개운법3"]}`;
+    const url=`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+    const res=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt},{inlineData:{mimeType,data:base64}}]}],generationConfig:{temperature:0.7,maxOutputTokens:1024}})});
+    if(!res.ok){const e=await res.json().catch(()=>{});throw new Error(e?.error?.message||`오류 (${res.status})`);}
+    const d=await res.json();
+    const raw=d?.candidates?.[0]?.content?.parts?.[0]?.text??"";
+    if(!raw) throw new Error("AI 응답이 비어있습니다.");
+    const cleaned=raw.replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/i,"").trim();
+    try{return JSON.parse(cleaned);}catch{const m=raw.match(/\{[\s\S]*\}/);if(!m)throw new Error("응답 파싱 실패. 다시 시도해 주세요.");return JSON.parse(m[0]);}
   }
-
   function renderResult(data) {
-    document.getElementById("r-grade").textContent = data.grade;
-    document.getElementById("r-title").textContent = data.title;
-    document.getElementById("r-score").textContent = data.score;
-    document.getElementById("r-score2").textContent = data.score;
-    document.getElementById("r-summary").textContent = data.summary;
-    setTimeout(() => { document.getElementById("score-fill").style.width = data.score + "%"; }, 100);
+    document.getElementById("r-grade").textContent=data.grade;
+    document.getElementById("r-title").textContent=data.title;
+    document.getElementById("r-score").textContent=data.score;
+    document.getElementById("r-score2").textContent=data.score;
+    document.getElementById("r-summary").textContent=data.summary;
+    setTimeout(()=>{document.getElementById("score-fill").style.width=data.score+"%";},100);
   }
-
   function handlePayment() {
-    const IMP = window.IMP;
-    if (!IMP) { renderPremium(); showStep("premium"); return; }
+    const IMP=window.IMP;
+    if(!IMP){renderPremium();showStep("premium");return;}
     IMP.init("imp12345678");
     IMP.request_pay(
-      { pg: "kakaopay.TC0ONETIME", pay_method: "card", merchant_uid: "mid_" + Date.now(), name: "구구관상 프리미엄 리포트", amount: 990 },
-      (rsp) => {
-        if (rsp.success) { renderPremium(); showStep("premium"); }
-        else { document.getElementById("pay-error-msg").textContent = "결제 실패: " + rsp.error_msg; document.getElementById("pay-error").classList.remove("hidden"); }
+      {pg:"kakaopay.TC0ONETIME",pay_method:"card",merchant_uid:"mid_"+Date.now(),name:"구구관상 AI 프리미엄 리포트",amount:990},
+      (rsp)=>{
+        if(rsp.success){renderPremium();showStep("premium");}
+        else{document.getElementById("pay-error-msg").textContent="결제 실패: "+rsp.error_msg;document.getElementById("pay-error").classList.remove("hidden");}
       }
     );
   }
-
   function renderPremium() {
-    if (!analysisData) return;
-    // 부위별
-    const dw = document.getElementById("details-wrap");
-    dw.innerHTML = "";
-    if (analysisData.details) {
-      Object.entries(analysisData.details).forEach(([k, v]) => {
-        dw.innerHTML += `<div class="detail-card" style="margin-bottom:10px"><div class="detail-label">${detailLabels[k]||k}</div><div class="detail-text">${v}</div></div>`;
-      });
-    }
-    document.getElementById("p-golden").textContent = analysisData.goldenAge;
-    // 개운법
-    const rw = document.getElementById("remedy-wrap");
-    rw.innerHTML = "";
-    if (Array.isArray(analysisData.remedy)) {
-      analysisData.remedy.forEach((r, i) => {
-        rw.innerHTML += `<div class="remedy-item"><span class="remedy-num">${i+1}</span><span style="line-height:1.6">${r}</span></div>`;
-      });
-    }
+    if(!analysisData)return;
+    const dw=document.getElementById("details-wrap"); dw.innerHTML="";
+    if(analysisData.details){Object.entries(analysisData.details).forEach(([k,v])=>{dw.innerHTML+=`<div class="detail-card"><div class="detail-label">${detailLabels[k]||k}</div><div class="detail-text">${v}</div></div>`;});}
+    document.getElementById("p-golden").textContent=analysisData.goldenAge;
+    const rw=document.getElementById("remedy-wrap"); rw.innerHTML="";
+    if(Array.isArray(analysisData.remedy)){analysisData.remedy.forEach((r,i)=>{rw.innerHTML+=`<div class="remedy-item"><span class="remedy-num">${i+1}</span><span style="line-height:1.6">${r}</span></div>`;});}
   }
-
   async function handleShare() {
-    if (!analysisData) return;
-    const text = `[구구관상 AI]\n등급: ${analysisData.grade} | ${analysisData.title}\n${analysisData.summary}`;
-    if (navigator.share) { try { await navigator.share({ title: "구구관상 AI", text }); } catch {} }
-    else { try { await navigator.clipboard.writeText(text); alert("클립보드에 복사됐습니다!"); } catch { alert("공유 기능을 지원하지 않는 환경입니다."); } }
+    if(!analysisData)return;
+    const text=`[구구관상 AI]\n등급: ${analysisData.grade} | ${analysisData.title}\n${analysisData.summary}\n\n👉 www.99face.kr`;
+    if(navigator.share){try{await navigator.share({title:"구구관상 AI",text});}catch{}}
+    else{try{await navigator.clipboard.writeText(text);alert("클립보드에 복사됐습니다!");}catch{alert("공유 기능을 지원하지 않는 환경입니다.");}}
   }
 </script>
 </body>
