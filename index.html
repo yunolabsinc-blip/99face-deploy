@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>구구관상 AI - 내 얼굴의 부자 기운</title>
+  <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: #0c0c0f; color: #fff; min-height: 100vh; }
+    .wrap { max-width: 420px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; padding: 20px 20px 0; background: #111115; position: relative; overflow: hidden; }
+    .glow1 { position: absolute; top: 0; right: 0; width: 240px; height: 240px; background: radial-gradient(circle, rgba(217,119,6,0.08) 0%, transparent 70%); pointer-events: none; }
+    .glow2 { position: absolute; bottom: 120px; left: 0; width: 180px; height: 180px; background: radial-gradient(circle, rgba(234,179,8,0.05) 0%, transparent 70%); pointer-events: none; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; position: relative; z-index: 10; }
+    .logo { display: flex; align-items: center; gap: 8px; background: none; border: none; color: #fff; cursor: pointer; }
+    .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #fde047, #d97706); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(217,119,6,0.3); }
+    .logo-icon span { font-size: 9px; font-weight: 900; color: #000; line-height: 1.2; text-align: center; }
+    .logo-text { font-size: 17px; font-weight: 900; font-style: italic; }
+    .logo-badge { font-size: 9px; font-style: normal; color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); padding: 1px 5px; border-radius: 4px; margin-left: 3px; }
+    .reset-btn { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 18px; padding: 8px; cursor: pointer; }
+    /* 홈 */
+    .home { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; animation: fadeUp 0.5s ease; }
+    .icon-wrap { position: relative; margin-bottom: 32px; }
+    .icon-box { width: 110px; height: 110px; border-radius: 28px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; font-size: 40px; }
+    .price-badge { position: absolute; top: -10px; right: -10px; background: linear-gradient(135deg,#fbbf24,#f59e0b); color: #000; font-size: 8px; font-weight: 900; padding: 4px 8px; border-radius: 8px; transform: rotate(6deg); }
+    h1 { font-size: 1.9rem; font-weight: 900; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.5px; }
+    .gradient-text { background: linear-gradient(90deg,#fde68a,#f59e0b,#fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-style: italic; }
+    .subtitle { color: rgba(255,255,255,0.35); font-size: 14px; line-height: 1.7; margin-bottom: 36px; }
+    .error-box { width: 100%; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); border-radius: 14px; padding: 12px 16px; margin-bottom: 20px; color: #f87171; font-size: 12px; text-align: left; display: flex; gap: 8px; }
+    .btn-camera { width: 100%; background: linear-gradient(135deg,#f59e0b,#fbbf24); color: #000; font-weight: 900; font-size: 16px; padding: 18px 0; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 8px 24px rgba(217,119,6,0.25); margin-bottom: 12px; cursor: pointer; border: none; font-family: 'Noto Sans KR', sans-serif; }
+    .btn-gallery { width: 100%; background: rgba(255,255,255,0.06); color: #fff; font-weight: 900; font-size: 16px; padding: 18px 0; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; font-family: 'Noto Sans KR', sans-serif; }
+    .powered { margin-top: 20px; font-size: 9px; color: rgba(255,255,255,0.15); font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; }
+    /* 분석중 */
+    .analyzing { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+    .preview-wrap { position: relative; }
+    .preview-img { width: 140px; height: 140px; border-radius: 24px; overflow: hidden; border: 2px solid rgba(245,158,11,0.3); }
+    .preview-img img { width: 100%; height: 100%; object-fit: cover; }
+    .ping-ring { position: absolute; inset: -4px; border-radius: 28px; border: 2px solid rgba(245,158,11,0.4); animation: ping 2s ease-in-out infinite; pointer-events: none; }
+    .spinner { width: 44px; height: 44px; border: 3px solid rgba(245,158,11,0.2); border-top-color: #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; }
+    .loading-text { color: #f59e0b; font-weight: 900; font-size: 15px; animation: pulse 2s ease-in-out infinite; }
+    .loading-sub { color: rgba(255,255,255,0.2); font-size: 11px; }
+    /* 결과 */
+    .result { flex: 1; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; padding-bottom: 16px; animation: fadeUp 0.5s ease; }
+    .thumb { width: 72px; height: 72px; border-radius: 16px; overflow: hidden; border: 2px solid rgba(245,158,11,0.3); margin: 8px auto 0; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .grade-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 999px; background: linear-gradient(135deg,#fbbf24,#f97316); color: #000; font-size: 10px; font-weight: 900; letter-spacing: 0.15em; margin-bottom: 10px; }
+    .result-title { font-size: 2rem; font-weight: 900; font-style: italic; letter-spacing: -1px; line-height: 1.15; }
+    .result-score-label { font-size: 10px; color: rgba(255,255,255,0.3); font-weight: 700; margin-top: 6px; letter-spacing: 0.2em; }
+    .score-bar-wrap { background: rgba(255,255,255,0.04); border-radius: 12px; padding: 12px 14px; border: 1px solid rgba(255,255,255,0.06); }
+    .score-bar-header { display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,0.25); font-weight: 700; margin-bottom: 8px; }
+    .score-bar-bg { height: 6px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
+    .score-bar-fill { height: 100%; background: linear-gradient(90deg,#f59e0b,#fbbf24); border-radius: 999px; transition: width 1s ease; }
+    .summary-box { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 18px 20px; border: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); font-style: italic; line-height: 1.7; font-size: 14px; text-align: center; }
+    .lock-box { background: #18181f; border-radius: 24px; padding: 28px 24px; border: 1px solid rgba(245,158,11,0.2); text-align: center; }
+    .lock-icon { font-size: 28px; margin-bottom: 12px; }
+    .lock-title { font-weight: 900; font-size: 15px; margin-bottom: 6px; }
+    .lock-desc { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 20px; line-height: 1.6; }
+    .btn-pay { width: 100%; background: #fff; color: #000; font-weight: 900; font-size: 15px; padding: 16px 0; border-radius: 14px; border: none; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; }
+    /* 프리미엄 */
+    .premium { flex: 1; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; padding-bottom: 40px; animation: fadeUp 0.5s ease; }
+    .premium-header { text-align: center; padding-top: 8px; }
+    .premium-title { font-size: 19px; font-weight: 900; font-style: italic; text-transform: uppercase; }
+    .premium-sub { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 4px; letter-spacing: 0.2em; }
+    .detail-card { background: rgba(255,255,255,0.04); padding: 14px 16px; border-radius: 16px; border-left: 3px solid #f59e0b; }
+    .detail-label { color: #f59e0b; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 5px; }
+    .detail-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+    .golden-box { background: linear-gradient(135deg,#f59e0b,#ca8a04); border-radius: 28px; padding: 28px 24px; color: #000; position: relative; overflow: hidden; }
+    .golden-emoji { position: absolute; top: -20px; right: -20px; font-size: 100px; opacity: 0.08; }
+    .golden-label { font-size: 9px; font-weight: 900; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 8px; }
+    .golden-age { font-size: 1.9rem; font-weight: 900; font-style: italic; }
+    .golden-desc { font-size: 11px; font-weight: 700; margin-top: 12px; opacity: 0.8; line-height: 1.5; }
+    .remedy-box { background: rgba(245,158,11,0.07); border-radius: 18px; padding: 20px; border: 1px solid rgba(245,158,11,0.15); }
+    .remedy-title { color: #f59e0b; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 14px; }
+    .remedy-item { display: flex; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 10px; }
+    .remedy-num { color: #f59e0b; font-weight: 900; min-width: 16px; font-size: 12px; }
+    .btn-share { width: 100%; background: rgba(255,255,255,0.06); color: #fff; font-weight: 900; font-size: 14px; padding: 16px 0; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font-family: 'Noto Sans KR', sans-serif; }
+    .btn-reset { background: none; border: none; color: rgba(255,255,255,0.25); font-size: 12px; font-weight: 700; padding: 8px 0; cursor: pointer; width: 100%; font-family: 'Noto Sans KR', sans-serif; }
+    footer { margin-top: auto; padding: 16px 0 12px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+    footer p { font-size: 8px; color: rgba(255,255,255,0.15); font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+
+  <header>
+    <button class="logo" onclick="resetApp()">
+      <div class="logo-icon"><span>99<br/>관상</span></div>
+      <span class="logo-text">구구관상 <span class="logo-badge">AI</span></span>
+    </button>
+    <button class="reset-btn" onclick="resetApp()">↺</button>
+  </header>
+
+  <!-- 홈 -->
+  <div id="home" class="home">
+    <div class="icon-wrap">
+      <div class="icon-box">👁️</div>
+      <div class="price-badge">990원</div>
+    </div>
+    <h1>내 얼굴에 숨겨진<br/><span class="gradient-text">100억짜리 부자 기운</span></h1>
+    <p class="subtitle">AI가 이목구비를 정밀 스캔하여<br/>숨겨진 재물운 등급을 산출합니다</p>
+    <div id="error-box" class="error-box hidden"><span>⚠️</span><span id="error-msg"></span></div>
+    <label class="btn-camera">
+      📷 카메라로 바로 찍기
+      <input type="file" accept="image/*" capture="user" onchange="handleUpload(event)" style="display:none"/>
+    </label>
+    <label class="btn-gallery">
+      🖼️ 갤러리에서 선택
+      <input type="file" accept="image/jpeg,image/png,image/webp,image/heic" onchange="handleUpload(event)" style="display:none"/>
+    </label>
+    <p class="powered">Powered by Gemini AI · YUNO LABS</p>
+  </div>
+
+  <!-- 분석중 -->
+  <div id="analyzing" class="analyzing hidden">
+    <div class="preview-wrap">
+      <div class="preview-img"><img id="preview-img" src="" alt=""/></div>
+      <div class="ping-ring"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div class="spinner"></div>
+      <p id="loading-text" class="loading-text">안면 골격 스캔 중...</p>
+      <p class="loading-sub">잠시만 기다려 주세요</p>
+    </div>
+  </div>
+
+  <!-- 결과 -->
+  <div id="result" class="result hidden">
+    <div class="thumb"><img id="thumb-img" src="" alt=""/></div>
+    <div style="text-align:center">
+      <div class="grade-badge">✨ GRADE <span id="r-grade"></span> · COMPLETE</div>
+      <div class="result-title" id="r-title"></div>
+      <div class="result-score-label">재물운 <span id="r-score"></span>점</div>
+    </div>
+    <div class="score-bar-wrap">
+      <div class="score-bar-header"><span>재물 기운</span><span id="r-score2"></span>/100</div>
+      <div class="score-bar-bg"><div class="score-bar-fill" id="score-fill" style="width:0%"></div></div>
+    </div>
+    <div class="summary-box">"<span id="r-summary"></span>"</div>
+    <div id="pay-error" class="error-box hidden"><span>⚠️</span><span id="pay-error-msg"></span></div>
+    <div class="lock-box">
+      <div class="lock-icon">🔒</div>
+      <div class="lock-title">프리미엄 리포트 잠금 해제</div>
+      <div class="lock-desc">부위별 정밀 분석 · 인생 황금기 · 개운법</div>
+      <button class="btn-pay" onclick="handlePayment()">💳 990원에 전체 리포트 보기</button>
+    </div>
+  </div>
+
+  <!-- 프리미엄 -->
+  <div id="premium" class="premium hidden">
+    <div class="premium-header">
+      <div style="font-size:32px;margin-bottom:8px">✅</div>
+      <div class="premium-title">Premium Report</div>
+      <div class="premium-sub">99 GUANSANG AI · 정밀 분석</div>
+    </div>
+    <div id="details-wrap"></div>
+    <div class="golden-box">
+      <div class="golden-emoji">💰</div>
+      <div style="position:relative;z-index:1">
+        <div class="golden-label">인생 최고의 대박 시기</div>
+        <div class="golden-age" id="p-golden"></div>
+        <div class="golden-desc">이 시기 재물 기운이 최고조에 달합니다.<br/>과감한 결단이 부의 크기를 결정합니다.</div>
+      </div>
+    </div>
+    <div class="remedy-box">
+      <div class="remedy-title">🛡️ 개운법 · 운을 높이는 비법</div>
+      <div id="remedy-wrap"></div>
+    </div>
+    <button class="btn-share" onclick="handleShare()">📤 결과 공유하기</button>
+    <button class="btn-reset" onclick="resetApp()">다시 분석하기</button>
+  </div>
+
+  <footer><p>YUNO LABS · 99 GUANSANG AI</p></footer>
+</div>
+
+<script>
+  const GEMINI_API_KEY = "AIzaSyCd55g5GYEAycVewVGm9x7bZnIYVgRne54";
+  const MODEL = "gemini-2.5-flash-preview-05-20";
+  let analysisData = null;
+  let currentImageUrl = null;
+
+  const loadingMsgs = ["안면 골격 스캔 중...", "재물 기운 수치 계산 중...", "이목구비 정밀 분석 중...", "관상 등급 산출 중..."];
+  const detailLabels = { nose: "코 · 재물궁", eyes: "눈 · 통찰력", forehead: "이마 · 사회운", chin: "턱·입 · 저장운" };
+
+  function showStep(id) {
+    ["home","analyzing","result","premium"].forEach(s => document.getElementById(s).classList.add("hidden"));
+    document.getElementById(id).classList.remove("hidden");
+  }
+
+  function showError(msg) {
+    document.getElementById("error-msg").textContent = msg;
+    document.getElementById("error-box").classList.remove("hidden");
+  }
+
+  function resetApp() {
+    analysisData = null;
+    currentImageUrl = null;
+    document.getElementById("error-box").classList.add("hidden");
+    showStep("home");
+  }
+
+  function handleUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) { showError("10MB 이하 사진을 선택해 주세요."); return; }
+    currentImageUrl = URL.createObjectURL(file);
+    document.getElementById("preview-img").src = currentImageUrl;
+    document.getElementById("thumb-img").src = currentImageUrl;
+    e.target.value = "";
+    runAnalysis(file);
+  }
+
+  async function runAnalysis(file) {
+    showStep("analyzing");
+    let i = 0;
+    document.getElementById("loading-text").textContent = loadingMsgs[0];
+    const timer = setInterval(() => { i = (i+1) % loadingMsgs.length; document.getElementById("loading-text").textContent = loadingMsgs[i]; }, 1800);
+
+    try {
+      const base64 = await new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onloadend = () => res(r.result.split(",")[1]);
+        r.onerror = rej;
+        r.readAsDataURL(file);
+      });
+      const mimeType = file.type || "image/jpeg";
+      const data = await analyzeWithGemini(base64, mimeType);
+      clearInterval(timer);
+      analysisData = data;
+      renderResult(data);
+      showStep("result");
+    } catch(err) {
+      clearInterval(timer);
+      showError(err.message || "분석 중 오류가 발생했습니다.");
+      showStep("home");
+    }
+  }
+
+  async function analyzeWithGemini(base64, mimeType) {
+    const prompt = `당신은 20년 경력의 관상 전문가입니다. 사진을 분석하여 재물운 위주의 관상을 봐주세요.
+마크다운 없이 순수 JSON만 반환하세요:
+{"grade":"S/A/B/C 중 하나","score":숫자,"title":"관상 별명","summary":"요약 2~3문장","details":{"nose":"코 분석","eyes":"눈 분석","forehead":"이마 분석","chin":"턱 분석"},"goldenAge":"황금기 시기","remedy":["개운법1","개운법2","개운법3"]}`;
+
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }, { inlineData: { mimeType, data: base64 } }] }], generationConfig: { temperature: 0.7, maxOutputTokens: 1024 } })
+    });
+
+    if (!res.ok) { const e = await res.json().catch(()=>{}); throw new Error(e?.error?.message || `오류 (${res.status})`); }
+    const d = await res.json();
+    const raw = d?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+    if (!raw) throw new Error("AI 응답이 비어있습니다.");
+    const cleaned = raw.replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/i,"").trim();
+    try { return JSON.parse(cleaned); } catch {
+      const m = raw.match(/\{[\s\S]*\}/);
+      if (!m) throw new Error("응답 파싱 실패. 다시 시도해 주세요.");
+      return JSON.parse(m[0]);
+    }
+  }
+
+  function renderResult(data) {
+    document.getElementById("r-grade").textContent = data.grade;
+    document.getElementById("r-title").textContent = data.title;
+    document.getElementById("r-score").textContent = data.score;
+    document.getElementById("r-score2").textContent = data.score;
+    document.getElementById("r-summary").textContent = data.summary;
+    setTimeout(() => { document.getElementById("score-fill").style.width = data.score + "%"; }, 100);
+  }
+
+  function handlePayment() {
+    const IMP = window.IMP;
+    if (!IMP) { renderPremium(); showStep("premium"); return; }
+    IMP.init("imp12345678");
+    IMP.request_pay(
+      { pg: "kakaopay.TC0ONETIME", pay_method: "card", merchant_uid: "mid_" + Date.now(), name: "구구관상 프리미엄 리포트", amount: 990 },
+      (rsp) => {
+        if (rsp.success) { renderPremium(); showStep("premium"); }
+        else { document.getElementById("pay-error-msg").textContent = "결제 실패: " + rsp.error_msg; document.getElementById("pay-error").classList.remove("hidden"); }
+      }
+    );
+  }
+
+  function renderPremium() {
+    if (!analysisData) return;
+    // 부위별
+    const dw = document.getElementById("details-wrap");
+    dw.innerHTML = "";
+    if (analysisData.details) {
+      Object.entries(analysisData.details).forEach(([k, v]) => {
+        dw.innerHTML += `<div class="detail-card" style="margin-bottom:10px"><div class="detail-label">${detailLabels[k]||k}</div><div class="detail-text">${v}</div></div>`;
+      });
+    }
+    document.getElementById("p-golden").textContent = analysisData.goldenAge;
+    // 개운법
+    const rw = document.getElementById("remedy-wrap");
+    rw.innerHTML = "";
+    if (Array.isArray(analysisData.remedy)) {
+      analysisData.remedy.forEach((r, i) => {
+        rw.innerHTML += `<div class="remedy-item"><span class="remedy-num">${i+1}</span><span style="line-height:1.6">${r}</span></div>`;
+      });
+    }
+  }
+
+  async function handleShare() {
+    if (!analysisData) return;
+    const text = `[구구관상 AI]\n등급: ${analysisData.grade} | ${analysisData.title}\n${analysisData.summary}`;
+    if (navigator.share) { try { await navigator.share({ title: "구구관상 AI", text }); } catch {} }
+    else { try { await navigator.clipboard.writeText(text); alert("클립보드에 복사됐습니다!"); } catch { alert("공유 기능을 지원하지 않는 환경입니다."); } }
+  }
+</script>
+</body>
+</html>
