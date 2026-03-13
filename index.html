@@ -253,7 +253,7 @@
   async function analyzeWithGemini(base64,mimeType) {
     const prompt=`당신은 20년 경력의 관상 전문가입니다. 사진을 분석하여 재물운 위주의 관상을 봐주세요.\n반드시 순수 JSON만 반환하세요. 마크다운 코드블록, 설명 텍스트 없이 { 로 시작해서 } 로 끝나는 JSON만:\n{"grade":"S/A/B/C 중 하나","score":숫자,"title":"관상 별명","summary":"요약 2~3문장","details":{"nose":"코 분석","eyes":"눈 분석","forehead":"이마 분석","chin":"턱 분석"},"goldenAge":"황금기 시기","remedy":["개운법1","개운법2","개운법3"]}`;
     const url=`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GEMINI_API_KEY}`;
-    const res=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt},{inlineData:{mimeType,data:base64}}]}],generationConfig:{temperature:0.7,maxOutputTokens:1024}})});
+    const res=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt},{inlineData:{mimeType,data:base64}}]}],generationConfig:{temperature:0.7,maxOutputTokens:2048}})});
     if(!res.ok){const e=await res.json().catch(()=>{});throw new Error(e?.error?.message||`오류 (${res.status})`);}
     const d=await res.json();
     const raw=d?.candidates?.[0]?.content?.parts?.[0]?.text??"";
