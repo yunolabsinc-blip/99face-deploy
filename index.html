@@ -125,6 +125,24 @@
   <path d="M60 68 L55 80 Q60 83 65 80 L60 68" fill="rgba(146,64,14,0.2)" stroke="#92400e" stroke-width="1.2" stroke-linejoin="round"/>
   <path d="M44 90 Q60 101 76 90" fill="none" stroke="#92400e" stroke-width="2.8" stroke-linecap="round"/>
 </svg>
+  <defs>
+    <radialGradient id="faceGrad" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </radialGradient>
+  </defs>
+  <circle cx="60" cy="60" r="56" fill="rgba(245,158,11,0.08)"/>
+  <circle cx="60" cy="62" r="42" fill="url(#faceGrad)"/>
+  <ellipse cx="48" cy="44" rx="14" ry="9" fill="white" opacity="0.18"/>
+  <path d="M36 52 Q46 45 56 51" fill="none" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M64 51 Q74 45 84 52" fill="none" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+  <ellipse cx="46" cy="62" rx="9" ry="7" fill="#1a0800"/>
+  <circle cx="49" cy="59" r="2.5" fill="white" opacity="0.75"/>
+  <ellipse cx="74" cy="62" rx="9" ry="7" fill="#1a0800"/>
+  <circle cx="77" cy="59" r="2.5" fill="white" opacity="0.75"/>
+  <path d="M60 68 L55 80 Q60 83 65 80 L60 68" fill="rgba(146,64,14,0.2)" stroke="#92400e" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M44 90 Q60 101 76 90" fill="none" stroke="#92400e" stroke-width="2.8" stroke-linecap="round"/>
+</svg>
           <defs>
             <radialGradient id="faceGrad" cx="50%" cy="45%" r="50%">
               <stop offset="0%" stop-color="#fde68a"/>
@@ -258,7 +276,7 @@
   </footer>
 </div>
 <script>
-  const GEMINI_API_KEY = "AIzaSyB4GtlIpHdtS7HvkUZqejny8VnmEjss5sY";
+  const GEMINI_API_KEY = "AIzaSyDSyrSMngLe2D4ZoYwretFRMdogJWobOLM";
   const MODEL = "gemini-3-flash-preview";
   let analysisData = null, currentImageUrl = null;
   const loadingMsgs = ["안면 골격 스캔 중...","재물 기운 수치 계산 중...","이목구비 정밀 분석 중...","관상 등급 산출 중..."];
